@@ -74,5 +74,5 @@ jobs:
             VERSION_NAME=${{ github.event.inputs.VERSION_NAME }}
 
           tags: |
-            ${{ env.REPO }}:${{ github.event.inputs.tag }}
-            ${{ env.REPO }}:${{ github.event.inputs.tag }}_J${{ github.run_number }}
+            ${{ env.REPO }}:${{ github.event.inputs.tag }}-script
+            ${{ env.REPO }}:${{ github.event.inputs.tag }}-script_J${{ github.run_number }}
