@@ -85,13 +85,3 @@ ENV BASE ubuntu
 ENV VERSION="${VERSION}"
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["best"]
-
-FROM production AS with-scripting
-USER root
-RUN apt-get update -qq && \
-    export DEBIAN_FRONTEND="noninteractive" && \
-    apt-get install -y python3 perl ruby && \
-    # Clean the image
-    apt-get -y clean && \
-    rm -rf /var/lib/apt/lists/*
-USER JtR
