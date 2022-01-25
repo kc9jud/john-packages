@@ -3,7 +3,7 @@ FROM ${base_image}
 USER root
 RUN apt-get update -qq && \
     export DEBIAN_FRONTEND="noninteractive" && \
-    apt-get install -y python python3 perl ruby && \
+    apt-get install -y python2-minimal python3-minimal perl-base ruby && \
     # Clean the image
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/*
