@@ -9,7 +9,7 @@
 # http://www.gnu.org/licenses/gpl-2.0.html
 ######################################################################
 
-ARG base_image=ghcr.io/openwall/john:latest
+ARG base_image=ghcr.io/openwall/john:latest-slim
 
 FROM ${base_image}
 USER root
