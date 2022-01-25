@@ -13,7 +13,7 @@
 ARG release=false
 ARG commit=a16c8a76259ab870c07e5123c237b1900402d9a6
 
-FROM ubuntu:20.04 AS build
+FROM ubuntu:20.04
 WORKDIR /build/
 
 RUN apt-get update -qq && \
@@ -47,7 +47,7 @@ RUN apt-get update -qq && \
     # Clean the image
     rm *.o && cd .. && rm -rf src .git .ci .circleci .editorconfig .gitattributes .github .gitignore .mailmap .pre-commit.sh .travis .travis.yml && rm -rf run/ztex
 
-FROM ubuntu:20.04 AS production
+FROM ubuntu:20.04
 LABEL maintainer Claudio André (c) 2017-2021
 
 ARG VERSION_NAME
@@ -69,7 +69,7 @@ LABEL \
     org.opencontainers.image.title="John the Ripper 'Jumbo' CE password cracker" \
     org.opencontainers.image.description="John the Ripper is an Open Source password security auditing and password recovery tool. See https://www.openwall.com/john/"
 
-COPY --from=build /build/john /john
+COPY --from=0 /build/john /john
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s /usr/local/bin/docker-entrypoint.sh && \
     useradd -U -m JtR && \

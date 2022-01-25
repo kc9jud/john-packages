@@ -65,7 +65,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          file: ../../Dockerfile.scripting
+          file: ../../Dockerfile
           build-args: |
             release=${{ github.event.inputs.release }}
             commit=${{ github.event.inputs.hash }}
@@ -74,5 +74,23 @@ jobs:
             VERSION_NAME=${{ github.event.inputs.VERSION_NAME }}
 
           tags: |
-            ${{ env.REPO }}:${{ github.event.inputs.tag }}-script
-            ${{ env.REPO }}:${{ github.event.inputs.tag }}-script_J${{ github.run_number }}
+            ${{ env.REPO }}:${{ github.event.inputs.tag }}
+            ${{ env.REPO }}:${{ github.event.inputs.tag }}_J${{ github.run_number }}
+
+      - name: Build container image with scripting support
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          file: ../../Dockerfile.scripting
+          build-args: |
+            base_image=${{ env.REPO }}:${{ github.event.inputs.tag }}
+            release=${{ github.event.inputs.release }}
+            commit=${{ github.event.inputs.hash }}
+            BUILD_DATE=${{ steps.date.outputs.date }}
+            VERSION=${{ github.event.inputs.VERSION }}
+            VERSION_NAME=${{ github.event.inputs.VERSION_NAME }}
+
+          tags: |
+            ${{ env.REPO }}:${{ github.event.inputs.tag }}-full
+            ${{ env.REPO }}:${{ github.event.inputs.tag }}-full_J${{ github.run_number }}
+

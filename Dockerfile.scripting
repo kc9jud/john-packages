@@ -1,4 +1,16 @@
+######################################################################
+# Copyright (c) 2022 Patrick Fasano <patrick at patrickfasano.com>
+#
+# This program comes with ABSOLUTELY NO WARRANTY; express or implied.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, as expressed in version 2, seen at
+# http://www.gnu.org/licenses/gpl-2.0.html
+######################################################################
+
 ARG base_image=ghcr.io/openwall/john:latest
+
 FROM ${base_image}
 USER root
 RUN apt-get update -qq && \
