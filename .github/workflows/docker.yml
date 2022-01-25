@@ -83,7 +83,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          file: ../../Dockerfile.scripting
+          file: ../../Dockerfile.full
           build-args: |
             base_image=${{ env.REPO }}:${{ github.event.inputs.tag }}-slim
             release=${{ github.event.inputs.release }}
